@@ -57,13 +57,13 @@ public class TodoItemStepDefinitions extends SpringIntegrationTest implements En
     }
 
     private TodoItemResponse[] listTodoItems() {
-        return restTemplate.getForObject("http://localhost:8080/todo-items", TodoItemResponse[].class);
+        return restTemplate.getForObject("http://localhost:12345/todo-items", TodoItemResponse[].class);
     }
 
     private void addTodoItem(final String content) {
         AddTodoItemRequest request = new AddTodoItemRequest(content);
         final ResponseEntity<String> entity =
-                restTemplate.postForEntity("http://localhost:8080/todo-items", request, String.class);
+                restTemplate.postForEntity("http://localhost:12345/todo-items", request, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         final List<String> locations = entity.getHeaders().get("Location");
         final String location = locations.get(0);
@@ -74,6 +74,6 @@ public class TodoItemStepDefinitions extends SpringIntegrationTest implements En
 
     private void markTodoItemAsDone(final String id) {
         final MarkAsDoneRequest request = new MarkAsDoneRequest(true);
-        restTemplate.put("http://localhost:8080/todo-items/" + id, request);
+        restTemplate.put("http://localhost:12345/todo-items/" + id, request);
     }
 }
