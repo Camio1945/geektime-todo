@@ -1,0 +1,1 @@
+Your task is in the file doc/gemini_task/TODO.md. It changed since your last executing. Read the file again and do the task.
